@@ -32,6 +32,7 @@ def show_main(request):
 
 - Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
 Pada bagian ini, saya melakukan sebuah routing pada `urls.py` aplikasi main untuk memetakan fungsi yang telah dibuat pada `views.py` dengan perintah:
+
 `from django.urls import path
 from main.views import show_main
 
@@ -49,7 +50,7 @@ Selanjutnya, saya membuat akun Adaptable yang terhubung dengan akun GitHub dan m
 Setelah menyelesaikan semua langkah di atas, saya menjawab beberapa pertanyaan pada file README.md dan melakukan add, commit, dan push ke repositori GitHub.
 
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-![Breaks](https://github.com/elenazahrak/geprek-lensu/assets/125001077/57fd8514-74ae-474e-98b6-bf7ea4613171)
+![alt text](https://github.com/elenazahrak/geprek-lensu/assets/125001077/57fd8514-74ae-474e-98b6-bf7ea4613171)
 Pertama, client akan melakukan permintaan (request) dengan mengakses URL tertentu pada aplikasi web kita. URL yang diminta akan dicocokkan dengan pola yang didefinisikan pada `urls.py`. Setelah itu, `urls.py` akan mencocokkan URL yang diminta dengan pola yang didefinisikan. Bila sudah cocok, `views.py` akan dipanggil dan menjalankan logika berdasarkan permintaan yang diterima. Hal ini bisa dengan mengambil atau memanipulasi data menggunakan `models.py` serta melakukan render template HTML dengan data tersebut. `Models.py` akan digunakan untuk berinteraksi dengan basis data jika diperlukan.  Kemudian, template HTML akan digunakan untuk melakukan proses render halaman web yang akan dikirimkan sebagai sebuah tanggapan ke client.
 
 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
