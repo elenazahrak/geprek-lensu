@@ -19,7 +19,7 @@ Saya menjalankan perintah `python manage.py startapp main` untuk membentuk sebua
 
 -- Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
 Saya memodifikasi berkas `views.py` dengan menambahkan `from django.shortcuts import render` untuk tampilan HTML. Saya juga menambahkan fungsi `show main` dengan perintah di bawah ini untuk mengambil data dari model Item dan akan dirender ke template HTML.
-```from django.shortcuts import render
+`from django.shortcuts import render
 
 def show_main(request):
     context = {
@@ -28,18 +28,18 @@ def show_main(request):
         'class': 'PBP F'
     }
 
-    return render(request, "main.html", context)```
+    return render(request, "main.html", context)`
 
 - Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
 Pada bagian ini, saya melakukan sebuah routing pada `urls.py` aplikasi main untuk memetakan fungsi yang telah dibuat pada `views.py` dengan perintah:
-```from django.urls import path
+from django.urls import path
 from main.views import show_main
 
 app_name = 'main'
 
 urlpatterns = [
     path('', show_main, name='show_main'),
-]```
+]`
 Kode ini bertujuan untuk mendefinisikan sebuah pola URL di aplikasi dengan namespace 'main`. Ketika URL akar diakses, fungsi `show_main` dalam modul `views` akan dipanggil dan URL yag bernama `show_main` ini dapat digunakan untuk mengacu pada URL tersebut dalam aplikasi.
 
 - Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
