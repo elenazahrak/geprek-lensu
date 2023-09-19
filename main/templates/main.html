@@ -1,8 +1,44 @@
-<h1>Geprek Lensu Page</h1>
+{% extends 'base.html' %}
 
-<h5>App Name: </h5>
-<p>{{ app }}<p>
-<h5>Name: </h5>
-<p>{{ name }}<p>
-<h5>Class: </h5>
-<p>{{ class }}<p>
+{% block content %}
+    <h1>Geprek Lensu</h1>
+
+    <h5>Name:</h5>
+    <p>{{name}}</p>
+
+    <h5>Class:</h5>
+    <p>{{class}}</p>
+    
+    {% with item_count=products|length %}
+        <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
+    {% endwith %}
+
+<table>
+    <tr>
+        <th>Menu</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Description</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for product in products %}
+        <tr>
+            <td>{{product.menu}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.stock}}</td>
+            <td>{{product.description}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Klik Untuk Menambahkan Menu
+    </button>
+</a>
+
+{% endblock content %}
