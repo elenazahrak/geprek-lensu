@@ -79,27 +79,39 @@ Perbedaan pada MVC, MVT, dan MVVM di antaranya MVC lebih umum digunakan dalam pe
 
 >Tugas 3
 1. Apa perbedaan antara form POST dan form GET dalam Django?
+   
 Dalam Django, form POST dan form GET merupakan dua metode yang berbeda yang dapat digunakan untuk mengirimkan data dari browser pengguna ke server Django. Form POST biasanya digunakan untuk mengirimkan data yang akan dimasukkan atau diubah pada server, sedangkan Form GET biasanya digunakan untuk mengambil data dari server. Form POST tidak memiliki batasan panjang data yang dapat dikirim dan cocok untuk mengirimkan jumlah data yang lebih besar, lain halnya dengan form GET yang panjang URL dan data yang dapat dikirimkannya dibatasi oleh batasan server web dan browser dan lebih cocok untuk mengirimkan jumlah data yang lebih sedikit. Dari segi keamanan, form POST lebih aman untuk mengirimkan data-data sensitif karena data disertakan dalam tubuh permintaan HTTP dan tidak terlihat dalam URL, tidak seperti form GET yang datanya terlihat di URL serta dapat dengan mudah dilihat dan dicuri siapapun sehingga kurang aman untung data-data sensitif.
+
 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 Perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data adalah dalam tujuan dan struktur datanya. XML dirancang untuk menyimpan dan mengirim data yang terstruktur. Tidak adanya aturan khusus dalam representasi data membuat XML dianggap tidak efisien dalam kecepatan pengiriman data. Lain halnya dengan JSON yang digunakan untuk pertukaran data antara aplikasi dengan format teks yang ringkas dan mudah dibaca. JSON sering digunakan dalam pengembangan aplikasi web, misalnya untuk pertukaran data dalam API web serta komunikasi antara browser dan server. JSON merepresentasikan data dalam bentuk key-value pairs dengan menggunakan sintaks objek JavaScript. JSON dinilai lebih efisien dalam parsing data dibandingkan dengan XML. Lain halnya lagi dengan HTML yang membuat dan menyajikan tampilan serta konten pada halaman web. Konten yang dimaksud dapat berupa teks, gambar, tautan, dan lain sebagainya. Berbeda dengan XML dan JSON yang menyimpan atau melakukan pertukaran data, fokus HTML lebih mengarah pada representasi tampilan.
+
 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
- JSON dinilai lebih cepat dan efisien dalam mengolah data karena format JSON memiliki hirarki data yang lebih jelas dan jumlah baris kode yang jauh lebih sedikit. Penulisan kodenya yang tidak memerlukan terlalu banyak karakter membuat data lebih cepat tiba di server. Selain itu, hampir semua browser modern yang ada saat ini dapat memproses data JSON dan mengakses website dengan baik dan lancar.
+JSON dinilai lebih cepat dan efisien dalam mengolah data karena format JSON memiliki hirarki data yang lebih jelas dan jumlah baris kode yang jauh lebih sedikit. Penulisan kodenya yang tidak memerlukan terlalu banyak karakter membuat data lebih cepat tiba di server. Selain itu, hampir semua browser modern yang ada saat ini dapat memproses data JSON dan mengakses website dengan baik dan lancar.
+
 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
 Pada tahap ini, saya membuat sebuah form input data yang memungkinkan saya untuk memasukkan objek data baru yang akan ditampilkan pada halaman utama aplikasi. Saya membuat file baru bernama forms.py dan menambahkan beberapa kode, serta mengisi bagian fields dengan model yang saya gunakan, yaitu ["menu", "price", "stock", "description"].
+
 [x] Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
 Pada bagian ini, saya menambahkan beberapa import pada berkas views.py yang terdapat pada folder main. Untuk mengelola proses pengisian formulir dan penyimpanan data produk, saya membuat fungsi baru bernama “create_product”. Saya juga melakukan perubahan pada fungsi “show_main” guna menampilkan data produk yang telah disimpan pada database dan nambahkan import fungsi create_product pada urls.py. Kemudian, saya membuat berkas create_product.html untuk menambahkan elemen-elemen yang dibutuhkan saat menampilkan form input data. Saya juga melakukan modifikasi pada main.html supaya data produk dapat ditampilkan dalam bentuk tabel dan juga menambahkan tombol “Klik untuk Menambahkan Menu” yang akan terhubung ke page form.
+
 Selanjutnya, saya menambahkan lagi beberapa import pada berkas views.py yang terdapat pada folder main. Kemudian, saya menambahkan beberapa fungsi seperti show_xml dan show_json untuk mengambil data dari model “Product dan menyimpannya dalam sebuah variabel dan menambahkan beberapa import untuk fungsi yang telah saya buat sebelumnya pada file urls.py.
+
 Untuk mengembalikan data berdasarkan ID dalam bentuk XML dan JSON, saya membuat dua fungsi baru bernama “show_xml_by_id” dan “show_json_by_id” dengan parameter “request” dan “id” pada file views.py. Kemudian, di dalam fungsi-fungsi tersebut, saya membuat variabel yang akan digunakan untuk menyimpan hasil dari permintaan query data berdasarkan ID tertentu yang ada dalam model “Product”. Saya juga menambahkan “return” untuk mengembalikan HttpResponse yang berisi parameter “data” yang sudah di-serialize menjadi format XML atau JSON. Selanjutnya, pada file urls.py, saya menambahkan beberapa import untuk fungsi yang telah saya buat sebelumnya.
+
 [x] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
 Dalam pembuatan routing URL untuk views pada HTML, saya menambahkan path url ke dalam urlpatterns untuk dapat mengakses fungsi. Untuk menguji form input data produk yang telah dibuat sebelumnya, saya menjalankan proyek Django dengan perintah python manage.py runserver dan membuka http://localhost:8000 pada browser.
 Dalam pembuatan routing URL untuk views pada XML dan JSON,  saya menambahkan path URL ke dalam urlpatterns untuk dapat mengakses fungsi-fungsi tersebut. Terakhir, saya menjalankan proyek Django menggunakan perintah  python manage.py runserver dan membuka http://localhost:8000/xml atau http://localhost:8000/json pada browser untuk melihat hasilnya.
 Mengulang hal yang sama,  saya menambahkan path URL ke dalam urlpatterns untuk dapat mengakses fungsi-fungsi tersebut. Terakhir, saya menjalankan proyek Django menggunakan perintah  python manage.py runserver dan membuka  http://localhost:8000/xml/[id] atau http://localhost:8000/json/[id] pada browser untuk melihat hasilnya. [id] diisi dengan ID yang ingin kita akses.
+
 [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
 Setelah menyelesaikan semua langkah di atas, saya menjawab beberapa pertanyaan pada file README.md.
+
 [x] Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+
 [x] Melakukan add-commit-push ke GitHub.
 Terakhir, saya melakukan add, commit, dan push ke GitHub dengan perintah:
-'git add .
+```git add .
 git commit -m "<pesan_commit>"
-git push -u origin <branch_utama>'
+git push -u origin <branch_utama>
+```
