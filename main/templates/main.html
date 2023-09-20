@@ -13,32 +13,32 @@
         <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
     {% endwith %}
 
-<table>
-    <tr>
-        <th>Menu</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>Description</th>
-    </tr>
-
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for product in products %}
+    <table>
         <tr>
-            <td>{{product.menu}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.stock}}</td>
-            <td>{{product.description}}</td>
+            <th>Menu</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Description</th>
         </tr>
-    {% endfor %}
-</table>
 
-<br />
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
 
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Klik Untuk Menambahkan Menu
-    </button>
-</a>
+        {% for product in products %}
+            <tr>
+                <td>{{product.menu}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.stock}}</td>
+                <td>{{product.description}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <br />
+
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Klik Untuk Menambahkan Menu
+        </button>
+    </a>
 
 {% endblock content %}
