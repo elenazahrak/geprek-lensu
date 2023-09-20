@@ -78,6 +78,7 @@ MVVM (Model View ViewModel)
 Perbedaan pada MVC, MVT, dan MVVM di antaranya MVC lebih umum digunakan dalam pengembangan aplikasi berbasis web dan desktop dengan tingkat kompleksitas yang beragam, sementara MVT merupakan varian dari MVC yang ditemukan pada kerangka kerja Django, terutama untuk pengembangan aplikasi web dengan fokus manajemen konten, dan MVVM umum digunakan dalam pengembangan aplikasi berbasis antarmuka pengguna yang kompleks. Selain itu, MVC mengatur aliran data dari Model ke View Melalui Controller, sementara MVT mengaturnya dari Model ke Template untuk ditampilkan, dan MVVM mengaturnya dari Model ke ViewModel serta mengikat data ke View.
 
 >Tugas 3
+
 **1. Apa perbedaan antara form POST dan form GET dalam Django?**
    
 Dalam Django, form POST dan form GET merupakan dua metode yang berbeda yang dapat digunakan untuk mengirimkan data dari browser pengguna ke server Django. Form POST biasanya digunakan untuk mengirimkan data yang akan dimasukkan atau diubah pada server, sedangkan Form GET biasanya digunakan untuk mengambil data dari server. Form POST tidak memiliki batasan panjang data yang dapat dikirim dan cocok untuk mengirimkan jumlah data yang lebih besar, lain halnya dengan form GET yang panjang URL dan data yang dapat dikirimkannya dibatasi oleh batasan server web dan browser dan lebih cocok untuk mengirimkan jumlah data yang lebih sedikit. Dari segi keamanan, form POST lebih aman untuk mengirimkan data-data sensitif karena data disertakan dalam tubuh permintaan HTTP dan tidak terlihat dalam URL, tidak seperti form GET yang datanya terlihat di URL serta dapat dengan mudah dilihat dan dicuri siapapun sehingga kurang aman untung data-data sensitif.
@@ -94,21 +95,21 @@ JSON dinilai lebih cepat dan efisien dalam mengolah data karena format JSON memi
    
 - [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
 
-Pada tahap ini, saya membuat sebuah form input data yang memungkinkan saya untuk memasukkan objek data baru yang akan ditampilkan pada halaman utama aplikasi. Saya membuat file baru bernama forms.py dan menambahkan beberapa kode, serta mengisi bagian fields dengan model yang saya gunakan, yaitu ["menu", "price", "stock", "description"].
+Pada tahap ini, saya membuat sebuah form input data yang memungkinkan saya untuk memasukkan objek data baru yang akan ditampilkan pada halaman utama aplikasi. Saya membuat file baru bernama `forms.py` dan menambahkan beberapa kode, serta mengisi bagian fields dengan model yang saya gunakan, yaitu ["menu", "price", "stock", "description"].
 
 - [x] Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
 
-Pada bagian ini, saya menambahkan beberapa import pada berkas views.py yang terdapat pada folder main. Untuk mengelola proses pengisian formulir dan penyimpanan data produk, saya membuat fungsi baru bernama “create_product”. Saya juga melakukan perubahan pada fungsi “show_main” guna menampilkan data produk yang telah disimpan pada database dan nambahkan import fungsi create_product pada urls.py. Kemudian, saya membuat berkas create_product.html untuk menambahkan elemen-elemen yang dibutuhkan saat menampilkan form input data. Saya juga melakukan modifikasi pada main.html supaya data produk dapat ditampilkan dalam bentuk tabel dan juga menambahkan tombol “Klik untuk Menambahkan Menu” yang akan terhubung ke page form.
+Pada bagian ini, saya menambahkan beberapa import pada berkas `views.py` yang terdapat pada folder main. Untuk mengelola proses pengisian formulir dan penyimpanan data produk, saya membuat fungsi baru bernama `create_product`. Saya juga melakukan perubahan pada fungsi `show_main` guna menampilkan data produk yang telah disimpan pada database dan nambahkan import fungsi `create_product` pada `urls.py`. Kemudian, saya membuat berkas `create_product.html` untuk menambahkan elemen-elemen yang dibutuhkan saat menampilkan form input data. Saya juga melakukan modifikasi pada main.html supaya data produk dapat ditampilkan dalam bentuk tabel dan juga menambahkan tombol “Klik untuk Menambahkan Menu” yang akan terhubung ke page form.
 
-Selanjutnya, saya menambahkan lagi beberapa import pada berkas views.py yang terdapat pada folder main. Kemudian, saya menambahkan beberapa fungsi seperti show_xml dan show_json untuk mengambil data dari model “Product dan menyimpannya dalam sebuah variabel dan menambahkan beberapa import untuk fungsi yang telah saya buat sebelumnya pada file urls.py.
+Selanjutnya, saya menambahkan lagi beberapa import pada berkas `views.py` yang terdapat pada folder main. Kemudian, saya menambahkan beberapa fungsi seperti `show_xml` dan `show_json` untuk mengambil data dari model “Product" dan menyimpannya dalam sebuah variabel dan menambahkan beberapa import untuk fungsi yang telah saya buat sebelumnya pada file `urls.py`.
 
-Untuk mengembalikan data berdasarkan ID dalam bentuk XML dan JSON, saya membuat dua fungsi baru bernama “show_xml_by_id” dan “show_json_by_id” dengan parameter “request” dan “id” pada file views.py. Kemudian, di dalam fungsi-fungsi tersebut, saya membuat variabel yang akan digunakan untuk menyimpan hasil dari permintaan query data berdasarkan ID tertentu yang ada dalam model “Product”. Saya juga menambahkan “return” untuk mengembalikan HttpResponse yang berisi parameter “data” yang sudah di-serialize menjadi format XML atau JSON. Selanjutnya, pada file urls.py, saya menambahkan beberapa import untuk fungsi yang telah saya buat sebelumnya.
+Untuk mengembalikan data berdasarkan ID dalam bentuk XML dan JSON, saya membuat dua fungsi baru bernama `show_xml_by_id` dan `show_json_by_id` dengan parameter “request” dan “id” pada file `views.py`. Kemudian, di dalam fungsi-fungsi tersebut, saya membuat variabel yang akan digunakan untuk menyimpan hasil dari permintaan query data berdasarkan ID tertentu yang ada dalam model “Product”. Saya juga menambahkan “return” untuk mengembalikan HttpResponse yang berisi parameter “data” yang sudah di-serialize menjadi format XML atau JSON. Selanjutnya, pada file `urls.py`, saya menambahkan beberapa import untuk fungsi yang telah saya buat sebelumnya.
 
 - [x] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
 
-Dalam pembuatan routing URL untuk views pada HTML, saya menambahkan path url ke dalam urlpatterns untuk dapat mengakses fungsi. Untuk menguji form input data produk yang telah dibuat sebelumnya, saya menjalankan proyek Django dengan perintah python manage.py runserver dan membuka http://localhost:8000 pada browser.
-Dalam pembuatan routing URL untuk views pada XML dan JSON,  saya menambahkan path URL ke dalam urlpatterns untuk dapat mengakses fungsi-fungsi tersebut. Terakhir, saya menjalankan proyek Django menggunakan perintah  python manage.py runserver dan membuka http://localhost:8000/xml atau http://localhost:8000/json pada browser untuk melihat hasilnya.
-Mengulang hal yang sama,  saya menambahkan path URL ke dalam urlpatterns untuk dapat mengakses fungsi-fungsi tersebut. Terakhir, saya menjalankan proyek Django menggunakan perintah  python manage.py runserver dan membuka  http://localhost:8000/xml/[id] atau http://localhost:8000/json/[id] pada browser untuk melihat hasilnya. [id] diisi dengan ID yang ingin kita akses.
+Dalam pembuatan routing URL untuk views pada HTML, saya menambahkan path url ke dalam `urlpatterns` untuk dapat mengakses fungsi. Untuk menguji form input data produk yang telah dibuat sebelumnya, saya menjalankan proyek Django dengan perintah `python manage.py runserver` dan membuka http://localhost:8000 pada browser.
+Dalam pembuatan routing URL untuk views pada XML dan JSON,  saya menambahkan path URL ke dalam `urlpatterns` untuk dapat mengakses fungsi-fungsi tersebut. Terakhir, saya menjalankan proyek Django menggunakan perintah `python manage.py runserver `dan membuka http://localhost:8000/xml atau http://localhost:8000/json pada browser untuk melihat hasilnya.
+Mengulang hal yang sama,  saya menambahkan path URL ke dalam `urlpatterns` untuk dapat mengakses fungsi-fungsi tersebut. Terakhir, saya menjalankan proyek Django menggunakan perintah  `python manage.py runserver` dan membuka  http://localhost:8000/xml/[id] atau http://localhost:8000/json/[id] pada browser untuk melihat hasilnya. [id] diisi dengan ID yang ingin kita akses.
 
 - [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
 
@@ -116,11 +117,11 @@ Setelah menyelesaikan semua langkah di atas, saya menjawab beberapa pertanyaan p
 
 - [x] Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 
-<img width="960" alt="Screenshot 2023-09-19 210700" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/cfbaa3ad-31e3-48a3-9148-7d1e16b41a3d">
-<img width="960" alt="Screenshot 2023-09-19 210743" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/04723fb3-d3fa-449e-9066-e51c4398f6f2">
-<img width="960" alt="Screenshot 2023-09-19 211020" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/775f6729-cf19-4255-88ed-0f6385756e47">
-<img width="960" alt="Screenshot 2023-09-19 211116" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/55aa49c2-b714-499b-8956-87029db5200d">
-<img width="960" alt="Screenshot 2023-09-19 211152" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/214d4ebe-137f-4b72-b54d-d867170e05fd">
+<img width="960" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/7abc1be8-5425-4cd1-a897-ef62ffc2e5db">
+<img width="960" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/139b0cd1-1cf3-49f3-be82-3be69d91d627">
+<img width="958" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/faa4cfc8-eef5-4eb6-aa7c-f76af751295a">
+<img width="960" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/84678b6e-965d-4d67-82c1-577bbac2c64c">
+<img width="959" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/c71533db-1fcb-4501-a277-bf15a631be50">
 
 - [x] Melakukan add-commit-push ke GitHub.
 
