@@ -117,11 +117,11 @@ Setelah menyelesaikan semua langkah di atas, saya menjawab beberapa pertanyaan p
 
 - [x] Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 
-<img width="960" alt="Screenshot 2023-09-19 210700" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/cfbaa3ad-31e3-48a3-9148-7d1e16b41a3d">
-<img width="960" alt="Screenshot 2023-09-19 210743" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/04723fb3-d3fa-449e-9066-e51c4398f6f2">
-<img width="960" alt="Screenshot 2023-09-19 211020" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/775f6729-cf19-4255-88ed-0f6385756e47">
-<img width="960" alt="Screenshot 2023-09-19 211116" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/55aa49c2-b714-499b-8956-87029db5200d">
-<img width="960" alt="Screenshot 2023-09-19 211152" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/214d4ebe-137f-4b72-b54d-d867170e05fd">
+<img width="960" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/7abc1be8-5425-4cd1-a897-ef62ffc2e5db">
+<img width="960" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/139b0cd1-1cf3-49f3-be82-3be69d91d627">
+<img width="958" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/faa4cfc8-eef5-4eb6-aa7c-f76af751295a">
+<img width="960" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/84678b6e-965d-4d67-82c1-577bbac2c64c">
+<img width="959" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/c71533db-1fcb-4501-a277-bf15a631be50">
 
 - [x] Melakukan add-commit-push ke GitHub.
 
