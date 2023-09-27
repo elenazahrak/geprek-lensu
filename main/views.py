@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import get_object_or_404, redirect
 
 @login_required(login_url='/login')
 # Create your views here.
@@ -92,3 +93,31 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def add_stock(request, id):
+    try:
+        product = Product.objects.get(pk=id)
+        if product.stock > 0:
+            product.stock += 1
+            product.save()
+    except Product.DoesNotExist:
+        pass
+
+    return redirect('main:show_main')
+
+def reduce_stock(request, id):
+    try:
+        product = Product.objects.get(pk=id)
+        if product.stock > 0:
+            product.stock -= 1
+            product.save()
+    except Product.DoesNotExist:
+        pass
+    
+    return redirect('main:show_main')
+
+def delete_product(request, id):
+    product = get_object_or_404(Product, pk=id)
+    product.delete()
+
+    return redirect('main:show_main')

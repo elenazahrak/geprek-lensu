@@ -19,6 +19,7 @@
             <th>Price</th>
             <th>Stock</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
 
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
@@ -27,8 +28,19 @@
             <tr>
                 <td>{{product.menu}}</td>
                 <td>{{product.price}}</td>
-                <td>{{product.stock}}</td>
+                <td id="stock{{ product.id }}">{{ product.stock }}</td>
                 <td>{{product.description}}</td>
+                <td>
+                    <a href="{% url 'main:add_stock' product.id %}">
+                        <button>Tambah</button>
+                    </a>
+                    <a href="{% url 'main:reduce_stock' product.id %}">
+                        <button>Kurang</button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.id %}">
+                        <button>Hapus</button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>

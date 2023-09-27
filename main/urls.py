@@ -7,6 +7,10 @@ from main.views import show_main, create_product, show_xml, show_json, show_xml_
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
+from main.views import add_stock
+from main.views import reduce_stock
+from main.views import add_stock
+from main.views import delete_product
 
 app_name = 'main'
 
@@ -20,4 +24,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('add_stock/<int:id>/', add_stock, name='add_stock'),
+    path('reduce_stock/<int:id>/', reduce_stock, name='reduce_stock'),
+    path('delete_product/<int:id>/', delete_product, name='delete_product'),
 ]
