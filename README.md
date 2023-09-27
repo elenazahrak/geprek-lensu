@@ -177,7 +177,8 @@ Untuk membatasi akses ke halaman utama, saya menambahkan beberapa potongan kode 
 - [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
 
 Pada bagian ini, saya membuat akun baru dengan memasukkan username, password, dan melakukan konfirmasi password sesuai ketentuan yang tertulis pada halaman login. Setelah memenuhi kriteria tersebut, saya berhasil masuk ke laman produk dan dapat menambahkan produk pada akun saya.
-![Untitled design (2)](https://github.com/elenazahrak/geprek-lensu/assets/125001077/6442ba3f-bb9c-42ee-b07c-20d93b912ce3)
+<img width="520" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/bc3ff5bf-a015-437f-bd26-da63667ccd93">
+<img width="398" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/2076527f-bed3-4a47-ab14-2dcfe3fb2abb">
 
 - [x] Menghubungkan model Item dengan User.
 
