@@ -81,7 +81,9 @@ Perbedaan pada MVC, MVT, dan MVVM di antaranya MVC lebih umum digunakan dalam pe
 
 </details>
 
->Tugas 3
+<details>
+<summary>Tugas 3</summary>
+<br>
 
 **1. Apa perbedaan antara form POST dan form GET dalam Django?**
    
@@ -134,8 +136,11 @@ Terakhir, saya melakukan add, commit, dan push ke GitHub dengan perintah:
 git commit -m "<pesan_commit>"
 git push -u origin <branch_utama>
 ```
+</details>
 
->Tugas 4
+<details>
+<summary>Tugas 4</summary>
+<br>
 
 **1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?**
    
@@ -194,3 +199,4 @@ git add .
 git commit -m "<pesan_commit>"
 git push -u origin <branch_utama>
 ```
+</details>
