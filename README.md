@@ -300,7 +300,7 @@ Kita dapat menggunakan tailwind jika kita memerlukan tingkat kontrol yang tinggi
 Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
 
 - [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
-Dalam melakukan kustomisasi halaman `;ogin.html`, `register.html`, dan `main.html`, saya melakukan beberapa perubahan, misalnya dengan menambahkan navigation bar dan menampilkan daftar produk ke dalam card. Untuk mempermudah dalam pembuatan desain, saya menggunakan framework Bootstrap. Dalam pembuatannya, saya menggunakan 2 cara penulisan CSS yaitu inline styles dan internal style sheet.
+Dalam melakukan kustomisasi halaman `login.html`, `register.html`, dan `create_product.html`, saya melakukan beberapa perubahan, misalnya dengan memasukkan form input login dan register ke dalam suatu card dan mengubah background. Untuk mempermudah dalam pembuatan desain, saya menggunakan framework Bootstrap. Dalam pembuatannya, saya menggunakan 2 cara penulisan CSS yaitu inline styles dan internal style sheet.
 
 Berikut ini merupakan contoh penulisan inline styles yang saya gunakan:
 
@@ -358,8 +358,65 @@ Berikut ini merupakan contoh penulisan internal style sheet yang saya gunakan:
     </style>
 ```
 
+Selain itu, jenis selector yang saya gunakan adalah Class Selector.
+
+Berikut ini merupakan contoh penulisan Class Selector yang saya gunakan:
+
+```
+.navbar {
+            background-color: #382B3D;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+        }
+```
 
 - [x] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+
+Dalam melakukan kustomisasi halaman `main.html`, saya buat lebih berwarna dengan melakukan beberapa perubahan, misalnya dengan menambahkan navigation bar dan menampilkan daftar produk ke dalam card. Agar tampilan menjadi lebih berwarna, saya mengatur gaya tampilan dengan menggunakan internal styles. Berikut ini merupakan kode yang saya buat untuk menambahkan navigation bar dan menampilkan daftar produk ke dalam card:
+
+```
+<nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="line-height: 2; color: #FFFFFF;">Geprek Lensu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:create_product' %}" style="color: #FFFFFF;">Tambah Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:logout' %}" style="color: #FFFFFF;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+```
+
+```
+<div class="row">
+            {% for product in products %}
+                <div class="cardbox">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.menu }}</h5>
+                        <p class="card-text">Harga: {{ product.price }}</p>
+                        <p class="card-text">Jumlah Stok: <span id="stock{{ product.id }}">{{ product.stock }}</span></p>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="text-center">
+                            <a href="{% url 'main:add_stock' product.id %}" class="btn btn-primary btn-sm">Tambah</a>
+                            <a href="{% url 'main:reduce_stock' product.id %}" class="btn btn-warning btn-sm">Kurang</a>
+                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="{% url 'main:edit_product' product.id %}" class="btn btn-info btn-sm">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+```
 
 - [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
 
