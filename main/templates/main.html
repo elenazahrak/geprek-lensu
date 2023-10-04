@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#" style="line-height: 2;">Geprek Lensu</a> <!-- Tambahkan line-height di sini -->
+            <a class="navbar-brand" href="#" style="line-height: 2; color: #FFFFFF;">Geprek Lensu</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -11,10 +11,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:create_product' %}">Tambah Item</a>
+                        <a class="nav-link" href="{% url 'main:create_product' %}" style="color: #FFFFFF;">Tambah Item</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+                        <a class="nav-link" href="{% url 'main:logout' %}" style="color: #FFFFFF;">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -22,17 +22,19 @@
     </nav>
 
     <div class="body">
-        <!-- <img src="url(https://www.pxfuel.com/en/desktop-wallpaper-ieplg)" alt=""> -->
         <div class="text">
-            <h1>Halo, {{ name }}</h1>
-            <h5>Nama:</h5>
-            <p>{{ name }}</p>
-            <h5>Kelas:</h5>
-            <p>{{ class }}</p>
-
+            <h1>Halo, {{ name }} dari kelas {{ class }}! ^____^</h1>
+            <!-- <h5>Nama: {{ name }}</h5> -->
+            <!-- <p>{{ name }}</p> -->
+            <!-- <h5>Kelas: {{ class }}</h5> -->
+            <!-- <p>{{ class }}</p> -->
             {% with item_count=products|length %}
-                <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
+                <h5>Kamu menyimpan {{ item_count }} item pada aplikasi ini</h5>
             {% endwith %}
+            <p>Sesi Login Terakhir: {{ last_login }}</p>
+            <!-- {% with item_count=products|length %}
+                <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
+            {% endwith %} -->
         </div>
         <!-- <h1>Halo, {{ name }}</h1>
         <h5>Nama:</h5>
@@ -56,7 +58,7 @@
                             <a href="{% url 'main:add_stock' product.id %}" class="btn btn-primary btn-sm">Tambah</a>
                             <a href="{% url 'main:reduce_stock' product.id %}" class="btn btn-warning btn-sm">Kurang</a>
                             <a href="{% url 'main:delete_product' product.id %}" class="btn btn-danger btn-sm">Hapus</a>
-                            <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{% url 'main:edit_product' product.id %}" class="btn btn-info btn-sm">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -65,29 +67,43 @@
 
         <br />
 
-        <h5>Sesi Login Terakhir: {{ last_login }}</h5>
+        <!-- <div class="cookie">
+            <h5>Sesi Login Terakhir: {{ last_login }}</h5>
+        </div> -->
     </div>
     <style>
         .navbar {
-            background-color: #ffffff;
+            background-color: #382B3D;
             padding: 0;
             font-family: 'Inter', sans-serif;
+            font-weight: bold;
         }
+
+        /* #navbarNav {
+            color: white;
+        } */
+
         .body {
             /* background: linear-gradient(to bottom, #ffc5ef, #ffffff); */
             max-width: 1440px;
             padding-right: 20px;
             padding-left: 20px;
-            background-image: url('https://www.pxfuel.com/en/desktop-wallpaper-ieplg');
+            /* background: #FEDCD2; */
+            background-image: url('https://wallpapercave.com/wp/wp8855577.jpg');
+            /* background-color: rgba(255, 255, 255, 0.5); */
         }
 
         .text {
+            color: #ffffff;
             padding-top: 40px;
             padding-left: 50px;
             font-family: 'Inter', sans-serif;
+            /* font-weight: bold; */
         }
         .row {
             padding: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
         }
         .cardbox {
             width: 380px;
@@ -101,6 +117,12 @@
             font-family: 'Inter', sans-serif;
         }
 
+        .cookie {
+            color: #ffffff;
+            padding-top: 40px;
+            padding-left: 50px;
+            font-family: 'Inter', sans-serif;
+        }
     </style>
     
 {% endblock content %}
