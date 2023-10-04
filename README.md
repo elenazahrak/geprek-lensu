@@ -177,7 +177,8 @@ Untuk membatasi akses ke halaman utama, saya menambahkan beberapa potongan kode 
 - [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
 
 Pada bagian ini, saya membuat akun baru dengan memasukkan username, password, dan melakukan konfirmasi password sesuai ketentuan yang tertulis pada halaman login. Setelah memenuhi kriteria tersebut, saya berhasil masuk ke laman produk dan dapat menambahkan produk pada akun saya.
-![Untitled design (2)](https://github.com/elenazahrak/geprek-lensu/assets/125001077/6442ba3f-bb9c-42ee-b07c-20d93b912ce3)
+<img width="520" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/bc3ff5bf-a015-437f-bd26-da63667ccd93">
+<img width="398" alt="image" src="https://github.com/elenazahrak/geprek-lensu/assets/125001077/2076527f-bed3-4a47-ab14-2dcfe3fb2abb">
 
 - [x] Menghubungkan model Item dengan User.
 
@@ -199,4 +200,121 @@ git add .
 git commit -m "<pesan_commit>"
 git push -u origin <branch_utama>
 ```
+</details>
+
+<details>
+<summary>Tugas 5</summary>
+<br>
+ 
+**1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.**
+
+- Element Selector
+
+Element selector merupakan jenis selector yang akan memilih HTML element berdasarkan nama elemennya. Kita dapat menggunakannya ketika kita ingin mengubah properti untuk semua elemen yang memiliki tag HTML yang sama. 
+
+Contoh:
+
+```
+p {
+  text-align: center;
+  color: pink;
+}
+```
+Semua elemen `<p>` akan menjadi rata tengah dengan teks yang berwarna biru.
+
+- Id Selector
+  
+Id selector merupakan jenis selector yang menyeleksi “id” menggunakan atribut “id” dari HTML element untuk memilih elemen tertentu. Id dari suatu elemen harus unik. Kita dapat menggunakannya ketika kita ingin mengaplikasikan gaya atau manipulasi tertentu ke elemen yang memiliki ID tertentu. Cara penulisannya adalah dengan menuliskan karakter hash  (#), lalu diikuti oleh Id elemen. 
+
+Contoh
+```
+#paragraf {
+  text-align: center;
+  color: pink;
+}
+```
+
+- Class Selector
+  
+Class selector merupakan jenis selector yang menyeleksi “class” dengan atribut “class” tertentu. Kita dapat menggunakannya ketika kita ingin mengaplikasikan gaya tertentu ke beberapa elemen yang memiliki class yang sama. Cara penulisannya adalah dengan menuliskan karakter titik (.) dan diikuti dengan nama class-nya.
+
+Contoh:
+
+```
+.center {
+  text-align: center;
+  color: pink;
+}
+```
+
+
+- Universal Selector
+  
+Universal selector adalah jenis selector yang menyeleksi Cascading Style Sheets yang memilih semua HTML element pada sebuah halaman web. Kita dapat menggunakannya ketika kita ingin mereset gaya dasar (CSS reset) atau ingin memilih semua elemen dalam dokumen ketika diperlukan.
+
+Contoh:
+```
+* {
+  text-align: center;
+  color: pink;
+}
+```
+
+**2. Jelaskan HTML5 Tag yang kamu ketahui.**
+
+HTML merupakan sebuah bahasa markup yang digunakan untuk membuat dan merancang halaman web. HTML5 merupakan versi terbaru yang hadir dengan berbagai fitur yang memungkinkan developer dapat membuat situs web dengan pengalaman yang lebih baik. Berikut ini merupakan beberapa tags yang terdapat pada HTML5:
+
+`<html>`: Tag untuk mendefinisikan awal dan akhir dari sebuah dokumen HTML dan semua elemen HTML yang akan berada di dalamnya
+
+`<head>`: Wadah untuk meta-informasi tentang dokumen, seperti judul, karakter set, dan tautan ke file CSS atau JavaScript
+
+`<title>`: Tag yang digunakan dalam elemen `<head>` untuk mendefinisikan judul halaman yang akan ditampilkan di tab peramban
+
+`<link>`: Tag yang digunakan dalam elemen `<head>` untuk menghubungkan dokumen HTML dengan file eksternal, misalnya file CSS
+
+`<style>`: Tag untuk menambahkan CSS langsung ke dalam halaman HTML
+
+`<body>`: Wadah untuk konten yang akan ditampilkan di halaman web, misalnya teks, gambar, formulir, dan elemen lainnya
+
+`<p>`: Tag untuk menampilkan paragraf teks
+
+`<h1>, <h2>, …, <h6>`: Tag untuk membuat judul
+
+`<img>`: Tag untuk menampilkan gambar pada halaman web
+
+`<form>`: Tag untuk membuat formulir interaktif yang akan digunakan oleh pengguna untuk mengirim data
+
+**3. Jelaskan perbedaan antara margin dan padding**.
+
+Margin merupakan ruang yang berada di sekitar elemen HTML. Menggunakan margin, kita dapat mengendalikan jarak antara elemen tersebut dengan elemen-elemen lain yang ada di luar batas elemen. Margin biasanya digunakan untuk mengatur tata letak halaman dan tidak memiliki latar belakang atau warna. Lain halnya dengan padding, di mana padding merupakan ruang yang berada di sekitar konten dalam elemen HTML. Menggunakan padding, kita dapat mengendalikan jarak antara konten elemen dengan batas elemen itu sendiri. Padding dapat memiliki latar belakang dan warna sehingga memengaruhi tampilan elemen.
+
+**4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?**
+
+CSS Tailwind merupakan kerangka kerja (framework) yang dapat digunakan untuk membuat UI atau tampilan dari aplikasi web dengan mudah dan cepat. Berbeda dengan Tailwind, Bootstrap merupakan sebuah framework yang dapat digunakan untuk membuat desain yang responsif dan mobile-friendly. Dari segi ukuran, tailwind menghasilkan ukuran file CSS yang lebih sedikit dibandingkan bootstrap. Bootstrap cenderung memiliki file CSS yang besar karena mengandung gaya yang lebih banyak. Dari segi pendekatan dan desain, tailwind lebih berfokus pada pendekatan “utility-first”, yaitu menggabungkan banyak kelas kecil untuk merancang elemen dan komponen. Dengan begitu, tailwind membutuhkan penulisan kode HTML yang lebih banyak. Lain halnya dengan bootstrap yang berfokus pada pendekatan komponen yang lebih besar dengan gaya bawaan yang lebih kuat. Dalam penggunaannya, tailwind sangat mudah disesuaikan dengan desain karena kita dapat mengubah kelas-kelas utilitasnya sesuai kebutuhan, sedangkan bootstrap memiliki gaya bawaan yang lebih kaku, sehingga penyesuaian dengan desain memerlukan lebih banyak kode tambahan.
+
+Kita dapat menggunakan tailwind jika kita memerlukan tingkat kontrol yang tinggi terhadap desain yang tampilannya sangat kustom. Framework ini cocok dengan orang-orang yang lebih nyaman dengan pendekatan “utility-first” dan ingin mengurangi ukuran file CSS yang dihasilkan. Di sisi lain, kita dapat menggunakan bootstrap apabila kita ingin membuat tampilan website dengan cepat melalui komponen-komponen yang sudah disiapkan dan dirancang untuk digunakan secara umum. Framework ini cocok digunakan untuk orang-orang yang membutuhkan dukungan browser yang luas.
+
+
+**5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+
+Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
+
+- [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+
+- [x] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+
+- [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+
+Setelah menyelesaikan semua langkah di atas, saya menjawab beberapa pertanyaan pada berkas `README.md`.
+
+- [x] Melakukan add-commit-push ke GitHub.
+
+Terakhir, saya melakukan add, commit, dan push ke GitHub dengan perintah:
+
+```
+git add .
+git commit -m "<pesan_commit>"
+git push -u origin <branch_utama>
+```
+
 </details>
