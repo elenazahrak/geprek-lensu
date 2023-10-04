@@ -24,27 +24,11 @@
     <div class="body">
         <div class="text">
             <h1>Halo, {{ name }} dari kelas {{ class }}! ^____^</h1>
-            <!-- <h5>Nama: {{ name }}</h5> -->
-            <!-- <p>{{ name }}</p> -->
-            <!-- <h5>Kelas: {{ class }}</h5> -->
-            <!-- <p>{{ class }}</p> -->
             {% with item_count=products|length %}
                 <h5>Kamu menyimpan {{ item_count }} item pada aplikasi ini</h5>
             {% endwith %}
             <p>Sesi Login Terakhir: {{ last_login }}</p>
-            <!-- {% with item_count=products|length %}
-                <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
-            {% endwith %} -->
         </div>
-        <!-- <h1>Halo, {{ name }}</h1>
-        <h5>Nama:</h5>
-        <p>{{ name }}</p>
-        <h5>Kelas:</h5>
-        <p>{{ class }}</p>
-
-        {% with item_count=products|length %}
-            <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
-        {% endwith %} -->
 
         <div class="row">
             {% for product in products %}
@@ -67,9 +51,6 @@
 
         <br />
 
-        <!-- <div class="cookie">
-            <h5>Sesi Login Terakhir: {{ last_login }}</h5>
-        </div> -->
     </div>
     <style>
         .navbar {
@@ -79,18 +60,11 @@
             font-weight: bold;
         }
 
-        /* #navbarNav {
-            color: white;
-        } */
-
         .body {
-            /* background: linear-gradient(to bottom, #ffc5ef, #ffffff); */
             max-width: 1440px;
             padding-right: 20px;
             padding-left: 20px;
-            /* background: #FEDCD2; */
             background-image: url('https://wallpapercave.com/wp/wp8855577.jpg');
-            /* background-color: rgba(255, 255, 255, 0.5); */
         }
 
         .text {
@@ -98,7 +72,6 @@
             padding-top: 40px;
             padding-left: 50px;
             font-family: 'Inter', sans-serif;
-            /* font-weight: bold; */
         }
         .row {
             padding: 40px;
