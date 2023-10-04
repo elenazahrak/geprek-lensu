@@ -300,6 +300,64 @@ Kita dapat menggunakan tailwind jika kita memerlukan tingkat kontrol yang tinggi
 Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
 
 - [x] Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+Dalam melakukan kustomisasi halaman `;ogin.html`, `register.html`, dan `main.html`, saya melakukan beberapa perubahan, misalnya dengan menambahkan navigation bar dan menampilkan daftar produk ke dalam card. Untuk mempermudah dalam pembuatan desain, saya menggunakan framework Bootstrap. Dalam pembuatannya, saya menggunakan 2 cara penulisan CSS yaitu inline styles dan internal style sheet.
+
+Berikut ini merupakan contoh penulisan inline styles yang saya gunakan:
+
+```
+<a class="navbar-brand" href="#" style="line-height: 2; color: #FFFFFF;">Geprek Lensu</a>
+```
+
+Berikut ini merupakan contoh penulisan internal style sheet yang saya gunakan:
+
+```
+<style>
+        .navbar {
+            background-color: #382B3D;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+        }
+
+        .body {
+            max-width: 1440px;
+            padding-right: 20px;
+            padding-left: 20px;
+            background-image: url('https://wallpapercave.com/wp/wp8855577.jpg');
+        }
+
+        .text {
+            color: #ffffff;
+            padding-top: 40px;
+            padding-left: 50px;
+            font-family: 'Inter', sans-serif;
+        }
+        .row {
+            padding: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        .cardbox {
+            width: 380px;
+            height: 200px;
+        }
+        .card-body {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cookie {
+            color: #ffffff;
+            padding-top: 40px;
+            padding-left: 50px;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+```
+
 
 - [x] Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
 
