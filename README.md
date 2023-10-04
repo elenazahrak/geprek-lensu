@@ -209,6 +209,7 @@ git push -u origin <branch_utama>
 **1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.**
 
 - Element Selector
+
 Element selector merupakan jenis selector yang akan memilih HTML element berdasarkan nama elemennya. Kita dapat menggunakannya ketika kita ingin mengubah properti untuk semua elemen yang memiliki tag HTML yang sama. 
 
 Contoh:
@@ -219,9 +220,10 @@ p {
   color: pink;
 }
 ```
-Semua elemen <p> akan menjadi rata tengah dengan teks yang berwarna biru.
+Semua elemen `<p>` akan menjadi rata tengah dengan teks yang berwarna biru.
 
 - Id Selector
+  
 Id selector merupakan jenis selector yang menyeleksi “id” menggunakan atribut “id” dari HTML element untuk memilih elemen tertentu. Id dari suatu elemen harus unik. Kita dapat menggunakannya ketika kita ingin mengaplikasikan gaya atau manipulasi tertentu ke elemen yang memiliki ID tertentu. Cara penulisannya adalah dengan menuliskan karakter hash  (#), lalu diikuti oleh Id elemen. 
 
 Contoh
@@ -233,6 +235,7 @@ Contoh
 ```
 
 - Class Selector
+  
 Class selector merupakan jenis selector yang menyeleksi “class” dengan atribut “class” tertentu. Kita dapat menggunakannya ketika kita ingin mengaplikasikan gaya tertentu ke beberapa elemen yang memiliki class yang sama. Cara penulisannya adalah dengan menuliskan karakter titik (.) dan diikuti dengan nama class-nya.
 
 Contoh:
@@ -246,6 +249,7 @@ Contoh:
 
 
 - Universal Selector
+  
 Universal selector adalah jenis selector yang menyeleksi Cascading Style Sheets yang memilih semua HTML element pada sebuah halaman web. Kita dapat menggunakannya ketika kita ingin mereset gaya dasar (CSS reset) atau ingin memilih semua elemen dalam dokumen ketika diperlukan.
 
 Contoh:
@@ -261,14 +265,23 @@ Contoh:
 HTML merupakan sebuah bahasa markup yang digunakan untuk membuat dan merancang halaman web. HTML5 merupakan versi terbaru yang hadir dengan berbagai fitur yang memungkinkan developer dapat membuat situs web dengan pengalaman yang lebih baik. Berikut ini merupakan beberapa tags yang terdapat pada HTML5:
 
 `<html>`: Tag untuk mendefinisikan awal dan akhir dari sebuah dokumen HTML dan semua elemen HTML yang akan berada di dalamnya
+
 `<head>`: Wadah untuk meta-informasi tentang dokumen, seperti judul, karakter set, dan tautan ke file CSS atau JavaScript
+
 `<title>`: Tag yang digunakan dalam elemen `<head>` untuk mendefinisikan judul halaman yang akan ditampilkan di tab peramban
+
 `<link>`: Tag yang digunakan dalam elemen `<head>` untuk menghubungkan dokumen HTML dengan file eksternal, misalnya file CSS
+
 `<style>`: Tag untuk menambahkan CSS langsung ke dalam halaman HTML
+
 `<body>`: Wadah untuk konten yang akan ditampilkan di halaman web, misalnya teks, gambar, formulir, dan elemen lainnya
+
 `<p>`: Tag untuk menampilkan paragraf teks
+
 `<h1>, <h2>, …, <h6>`: Tag untuk membuat judul
+
 `<img>`: Tag untuk menampilkan gambar pada halaman web
+
 `<form>`: Tag untuk membuat formulir interaktif yang akan digunakan oleh pengguna untuk mengirim data
 
 **3. Jelaskan perbedaan antara margin dan padding**.
