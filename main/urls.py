@@ -11,6 +11,8 @@ from main.views import add_stock
 from main.views import reduce_stock
 from main.views import add_stock
 from main.views import delete_product
+from main.views import edit_product
+from main.views import delete_product
 
 app_name = 'main'
 
@@ -27,4 +29,6 @@ urlpatterns = [
     path('add_stock/<int:id>/', add_stock, name='add_stock'),
     path('reduce_stock/<int:id>/', reduce_stock, name='reduce_stock'),
     path('delete_product/<int:id>/', delete_product, name='delete_product'),
+    path('edit-product/<int:id>', edit_product, name='edit_product'),
+    path('delete/<int:id>', delete_product, name='delete_product'),
 ]

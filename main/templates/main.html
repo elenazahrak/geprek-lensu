@@ -1,64 +1,106 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Geprek Lensu</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="line-height: 2;">Geprek Lensu</a> <!-- Tambahkan line-height di sini -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:create_product' %}">Tambah Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+    <div class="body">
+        <!-- <img src="url(https://www.pxfuel.com/en/desktop-wallpaper-ieplg)" alt=""> -->
+        <div class="text">
+            <h1>Halo, {{ name }}</h1>
+            <h5>Nama:</h5>
+            <p>{{ name }}</p>
+            <h5>Kelas:</h5>
+            <p>{{ class }}</p>
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+            {% with item_count=products|length %}
+                <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
+            {% endwith %}
+        </div>
+        <!-- <h1>Halo, {{ name }}</h1>
+        <h5>Nama:</h5>
+        <p>{{ name }}</p>
+        <h5>Kelas:</h5>
+        <p>{{ class }}</p>
+
+        {% with item_count=products|length %}
+            <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
+        {% endwith %} -->
+
+        <div class="row">
+            {% for product in products %}
+                <div class="cardbox">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.menu }}</h5>
+                        <p class="card-text">Harga: {{ product.price }}</p>
+                        <p class="card-text">Jumlah Stok: <span id="stock{{ product.id }}">{{ product.stock }}</span></p>
+                        <p class="card-text">{{ product.description }}</p>
+                        <div class="text-center">
+                            <a href="{% url 'main:add_stock' product.id %}" class="btn btn-primary btn-sm">Tambah</a>
+                            <a href="{% url 'main:reduce_stock' product.id %}" class="btn btn-warning btn-sm">Kurang</a>
+                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-info btn-sm">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <br />
+
+        <h5>Sesi Login Terakhir: {{ last_login }}</h5>
+    </div>
+    <style>
+        .navbar {
+            background-color: #ffffff;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .body {
+            /* background: linear-gradient(to bottom, #ffc5ef, #ffffff); */
+            max-width: 1440px;
+            padding-right: 20px;
+            padding-left: 20px;
+            background-image: url('https://www.pxfuel.com/en/desktop-wallpaper-ieplg');
+        }
+
+        .text {
+            padding-top: 40px;
+            padding-left: 50px;
+            font-family: 'Inter', sans-serif;
+        }
+        .row {
+            padding: 40px;
+        }
+        .cardbox {
+            width: 380px;
+            height: 200px;
+        }
+        .card-body {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+    </style>
     
-    {% with item_count=products|length %}
-        <p>Kamu menyimpan {{ item_count }} item pada aplikasi ini</p>
-    {% endwith %}
-
-    <table>
-        <tr>
-            <th>Menu</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Description</th>
-            <th>Action</th>
-        </tr>
-
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-        {% for product in products %}
-            <tr>
-                <td>{{product.menu}}</td>
-                <td>{{product.price}}</td>
-                <td id="stock{{ product.id }}">{{ product.stock }}</td>
-                <td>{{product.description}}</td>
-                <td>
-                    <a href="{% url 'main:add_stock' product.id %}">
-                        <button>Tambah</button>
-                    </a>
-                    <a href="{% url 'main:reduce_stock' product.id %}">
-                        <button>Kurang</button>
-                    </a>
-                    <a href="{% url 'main:delete_product' product.id %}">
-                        <button>Hapus</button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
-    <br />
-
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-    
-    <a href="{% url 'main:create_product' %}">
-        <button>
-            Klik Untuk Menambahkan Menu
-        </button>
-    </a>
-
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-
 {% endblock content %}
