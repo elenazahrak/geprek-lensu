@@ -4,6 +4,8 @@ NPM     : 2206824060
 
 Kelas   : PBP F
 
+[Tautan Web Geprek Lensu](http://elena-zahra-tugas.pbp.cs.ui.ac.id)
+
 <details>
 <summary>Tugas 2</summary>
 <br>
@@ -444,7 +446,31 @@ Asynchronous programming dan synchronous programming merupakan dua paradigma ata
 
 **2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.**
 
-Paradigma event-driven programming merupakan sebuah pendekatan di mana program merespons peristiwa atau kejadian yang terjadi, misalnya tindakan pengguna, dengan menjalankan tindakan tertentu. Pada JavaScript dan AJAX, paradigma ini sangat relevan karena banyak terdapat interaksi pengguna dan perubahan dinamis yang terjadi pada halaman web.
+Paradigma event-driven programming merupakan sebuah pendekatan di mana program merespons peristiwa atau kejadian yang terjadi, misalnya tindakan pengguna, dengan menjalankan tindakan tertentu. Pada JavaScript dan AJAX, paradigma ini sangat relevan karena banyak terdapat interaksi pengguna dan perubahan dinamis yang terjadi pada halaman web. Dalam tugas ini, penerapan kodenya seperti kode di bawah ini
+
+```
+function addProduct() {
+    fetch("{% url 'main:create_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+    })
+    .then(function (response) {
+        if (response.status === 200) {
+            var myModal = new bootstrap.Modal(document.getElementById("addProductModal"));
+            myModal.hide();
+
+            document.getElementById("form").reset();
+        }
+    })
+    .then(refreshProducts);
+
+    return false;
+}
+
+document.getElementById("button_add").onclick = addProduct;
+```
+
+Saya menggunakan kode `document.getElementById("button_add").onclick` untuk menentukan event listener yang akan merespons klik pengguna pada tombol dengan ID "button_add". Ini adalah implementasi dari paradigma event-driven, di mana kita mendengarkan tindakan pengguna (klik) pada elemen tertentu. Ketika tombol "Add Product by AJAX" diklik, fungsi `addProduct` akan menjalankan sebuah AJAX request menggunakan fetch. Ini adalah contoh lain dari event-driven programming, di mana tindakan pengguna (klik tombol) mengarah pada permintaan AJAX yang dilakukan ke server. Setelah mendapatkan respons dari server (dalam kasus ini, jika respons memiliki status 200), saya mengubah tampilan dengan cara menutup modal yang memiliki ID "addProductModal" dan mereset form dengan ID "form". Ini adalah contoh lain dari event-driven programming di mana respons server menghasilkan tindakan lanjutan pada tampilan (manipulasi DOM). Jadi, paradigma event-driven programming pada contoh ini adalah bahwa tindakan atau kejadian (klik tombol "Add Product by AJAX") merespons dengan menjalankan serangkaian tindakan lain yang terjadi pada elemen-elemen halaman web.
 
 **3. Jelaskan penerapan asynchronous programming pada AJAX.**
 
@@ -455,9 +481,9 @@ Asynchronous programming pada AJAX memungkinkan aplikasi web untuk responsif dan
 Dari segi ukuran, Fetch API lebih ringan dan menghemat ruang serta waktu dalam proses pengunduhannya karena aplikasi kita tidak memuat library tambahan, sedangkan jQuery yang merupakan library yang lebih besar sehingga cenderung memiliki ukuran yang lebih besar. Akan tetapi, jQuery ini membantu kita dalam menghindari penulisan kode JavaScript yang berlebihan sehingga dari segi fungsionalitas menjadi lebih lengkap. Selain itu, fetch API memiliki sintaks yang lebih sederhana sehingga lebih mudah dipahami untuk pengembang yang terbiasa dengan JavaScript, walaupun pemula mungkin akan sedikit kebingungan dalam menangani konsep Promise. JQuery juga memiliki sintaks yang sederhana karena banyak fungsi yang sudah tersedia sehingga mempermudah pengembang dalam melakukan pekerjaannya. Selanjutnya, fetch API belum didukung oleh beberapa versi lama dari Internet Explorer. Akan tetapi, tidak perlu khawatir juga karena masalah ini dapat diselesaikan dengan transpiler. Lain halnya dengan jQuery yang telah dirancang untuk kompatibilitas lintas browser, termasuk browser lama. Dari berbagai pertimbangan di atas, sebenarnya kita dapat memilih sesuai dengan kebutuhan aplikasi masing-masing. Fetch API akan menjadi solusi yang tepat jika kita membutuhkan kinerja yang maksimal, ukurang yang lebih kecil, dan teknologi yang lebih modern. Akan tetapi, jQuery menjadi pilihan yang tepat jika kita membutuhkan dukungan kompatibilitas lintas browser yang kuat.
 
 **5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
-- [x] Ubahlah kode cards data item agar dapat mendukung AJAX GET.
+- [x] Ubahlah kode cards data item agar dapat mendukung AJAX GET & Lakukan pengambilan task menggunakan AJAX GET.
 
-- [x] Lakukan pengambilan task menggunakan AJAX GET.
+Pada bagian ini, saya telah menentukan dua fungsi `getProducts` dan `refreshProducts` pada blok JavaScripts. Fungsi `getProducts` digunakan untuk melakukan pengambilan data produk dengan menggunakan AJAX GET. Fungsi ini mengambil data dari URL yang dihasilkan oleh templatetag Django `{% url 'main:get_product_json' %}` dan kemudian mengubah respons tersebut menjadi data JSON. Kemudian, fungsi `refreshProducts` mengambil data produk menggunakan `getProducts` dan menampilkan produk-produk tersebut dalam bentuk kartu di halaman website. Saya juga memanggil refreshProducts setelah halaman dimuat untuk pertama kali agar produk dapat ditampilkan pada awalnya. Dengan begitu, pengambilan task menggunakan AJAX GET dilakukan melalui fungsi getProducts yang diaktifkan saat halaman dimuat dan menghasilkan produk-produk yang ditampilkan pada halaman melalui fungsi `refreshProducts`.
 
 - [x] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
 
@@ -479,8 +505,24 @@ Pada bagian `<button type="button" class="btn" id="button_add" data-bs-dismiss="
 
 - [x] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
 
+Pada bagian ini saya memodifikasi kode JavaScript dan bagian ini menggunakan sebuah fungsi bernama `refreshProducts` yang digunakan untuk memperbarui tampilan produk di halaman web dengan data produk yang diperoleh dari server. Pertama, fungsi ini menggunakan `await getProducts()` untuk mengambil data produk dari server secara asynchronous. Fungsi `getProducts` adalah sebuah permintaan (request) ke server yang mengembalikan data produk. Setelah mendapatkan data produk, fungsi membersihkan (menghapus) isi dari elemen dengan ID `product_cards` pada halaman web dengan mengatur `.innerHTML`-nya menjadi string kosong. Hal ini dilakukan untuk membersihkan tampilan produk sebelum memperbarui dengan data yang baru. Selanjutnya, kode JavaScript mempersiapkan variabel `htmlString` yang akan digunakan untuk menyusun elemen-elemen HTML yang akan menampilkan produk. Variabel ini dimulai dengan string kosong. Kemudian, fungsi melakukan perulangan `items.forEach` melalui data produk yang diperoleh dari server. Untuk setiap produk, ia menambahkan elemen HTML yang akan menampilkannya dalam format yang diinginkan. Ini termasuk judul produk `menu`, deskripsi produk `description`, harga produk `price`, dan stok produk `stock`. Kemudian, ada bagian yang menambahkan tombol-tombol edit, delete, add stock, dan reduce stock. Tombol-tombol ini memiliki atribut `href` yang merujuk ke URL yang sesuai untuk masing-masing tindakan. Atribut `href` ini akan menyebabkan tindakan tertentu terjadi saat tombol ditekan. Setelah perulangan selesai, variabel `htmlString` yang berisi elemen-elemen HTML produk diberikan kepada elemen dengan ID `product_cards` menggunakan `.innerHTML`. Ini akan menyebabkan tampilan produk di halaman web diperbarui dengan data produk yang baru. Terakhir, saya memanggil `refreshProducts()` untuk menjalankan fungsi ini saat halaman dimuat. Fungsi ini akan memperbarui tampilan produk di halaman saya berdasarkan data yang diterima dari server.
+
 - [x] Melakukan perintah collectstatic.
 
 Pada bagian ini, saya melakukan pengaturan untuk static files yang terdapat pada file `settings.py`. Static files ini mencakup berbagai jenis file seperti CSS, JavaScript, dan gambar. Terdapat dua kode yang saya tambahkan yaitu `STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')` yang akan menentukan absolute path ke direktori tempat static files akan disimpan ketika perintah `collectstatic` dijalankan dalam proyek. Dengan begitu, kita dapat mengumpulkan semua static files dari berbagai aplikasi dalam proyek ke satu direktori. Baris kode kedua yang saya tambahkan adalah `STATIC_URL = 'static'` yang merupakan URL yang dapat diakses secara publik untuk mengambil static files. Ini merupakan alamat yang digunakan untuk mengakses static files dari luar situs web. Sedangkan perintah `collectstatic` itu sendiri bertugas untuk mengumpulkan semua static files dari berbagai aplikasi dalam proyek Django sehingga mempermudah akses dan penggunaan static files tersebut dalam situs web.
+
+- [x] Melakukan add-commit-push ke GitHub.
+
+Saya melakukan add, commit, dan push ke GitHub dengan perintah:
+
+```
+git add .
+git commit -m "<pesan_commit>"
+git push -u origin <branch_utama>
+```
+
+- [x] Melakukan deployment ke PaaS PBP Fasilkom UI dan sertakan tautan aplikasi pada file README.md.
+
+Terakhir, saya melakukan deployment terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses secara luas oleh teman-temanmu melalui Internet.
 
 </details>
