@@ -474,7 +474,9 @@ Setelah itu, saya membuat objek baru yang sesuai dengan model `Product` dengan d
 Pada bagian ini, saya menambahkan pengaturan rute untuk fungsi `create_ajax`. Pertama, saya membuka berkas `urls.py` pada direktori `main` dan melakukan impor fungsi `create_ajax`. Setelah itu, saya menambahkan rute URL dengan kode `path('create-ajax/', create_ajax, name='create_ajax'),` ke dalam pengaturan `urlpatterns`. Dengan begitu, URL ini akan mengarahkan permintaan pengguna ke fungsi yang sesuai untuk menambahkan produk baru menggunakan AJAX yaitu `create_ajax`.
 
 - [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
-	
+
+Pada bagian `<button type="button" class="btn" id="button_add" data-bs-dismiss="modal" style="background-color: #E03930; color:#EAD9A3; font-weight: 600;">Add Product</button>`, kode saya telah mengaitkannya dengan AJAX untuk mengirim data ke path `"/create-ajax":`. Elemen ini merupakan sebuah tombol dengan ID `button_add`. Ketika tombol ini ditekan, fungsi `addProduct` yang menggunakan Fetch API akan dijalankan untuk mengirimkan data formulir ke path `"/create-ajax"` dan kemudian akan melakukan pembaruan dengan memanggil fungsi `refreshProducts`.
+
 - [x] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
 
 - [x] Melakukan perintah collectstatic.
