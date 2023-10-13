@@ -79,50 +79,17 @@
 
         <table id="product_table">
             <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Description</th>
+                <th style="display: none;">Name</th>
+                <th style="display: none;">Price</th>
+                <th style="display: none;">Stock</th>
+                <th style="display: none;">Description</th>
             </tr>
         </table>
         
+        
         <div class="row" id="product_cards">
-            {% for product in products %}
-            <div class="card-container">
-                <div class="card-body">
-                    <div class="card-element" style="color: #866237;">
-                        <h5 class="card-title" style="font-weight: 700; margin-bottom: 10px;">{{ product.menu }}</h5>
-                        <p class="card-text" style="font-weight: 600; margin-bottom: 10px;">
-                            <i class="fas fa-info-circle"></i> <span class="icon-text"></span> {{ product.description }}
-                        </p>
-                        <div class="info-group">
-                            <div class="info" style="margin-bottom: 10px;">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span class="icon-text"></span> {{ product.price }}
-                            </div>
-                            <div class="info" style="margin-bottom: 10px;">
-                                <i class="fas fa-cubes"></i>
-                                <span class="icon-text"></span> <span id="stock{{ product.id }}">{{ product.stock }}</span>
-                            </div>
-                        </div>                        
-                        <div class="edit-delete">
-                            <a href="{% url 'main:edit_product' product.id %}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                            <a href="{% url 'main:add_stock' product.id %}" class="btn btn-sm btn-long" style="background-color: #F8362D; color: #EAD9A3; border-radius: 10px; border: none; margin-top: 10px;">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                            <a href="{% url 'main:reduce_stock' product.id %}" class="btn btn-sm btn-long" style="background-color: #F8362D; color: #EAD9A3; border-radius: 10px; border: none; margin-top: 10px;">
-                                <i class="fas fa-minus"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+            
+            
         </div>
         
 
@@ -136,24 +103,48 @@
         }
 
         async function refreshProducts() {
-            document.getElementById("product_table").innerHTML = ""
-            const products = await getProducts()
-            let htmlString = `<tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Description</th>
-            </tr>`
-            products.forEach((item) => {
-                htmlString += `\n<tr>
-                <td>${item.fields.menu}</td>
-                <td>${item.fields.price}</td>
-                <td>${item.fields.stock}</td>
-                <td>${item.fields.description}</td>
-            </tr>` 
+            const items = await getProducts();
+            document.getElementById("product_cards").innerHTML = "";
+            let htmlString = ""
+            console.log(items)
+            items.forEach((product) => {
+            htmlString += `\n
+            <div class="card-body">
+                    <div class="card-element" style="color: #866237;">
+                        <h5 class="card-title" style="font-weight: 700; margin-bottom: 10px;">${product.fields.menu}</h5>
+                        <p class="card-text" style="font-weight: 600; margin-bottom: 10px;">
+                            <i class="fas fa-info-circle"></i> <span class="icon-text"></span> ${product.fields.description}
+                        </p>
+                        <div class="info-group">
+                            <div class="info" style="margin-bottom: 10px;">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span class="icon-text"></span> ${product.fields.price}
+                            </div>
+                            <div class="info" style="margin-bottom: 10px;">
+                                <i class="fas fa-cubes"></i>
+                                <span class="icon-text"></span> <span id="stock${product.pk}">${product.fields.stock}</span>
+                            </div>
+                        </div>                        
+                        <div class="edit-delete">
+                            <a href="edit-product/${product.pk}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="delete-product/${product.pk}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="add_stock/${product.pk}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;"">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                            <a href="reduce-stock/${product.pk}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;"">
+                                <i class="fas fa-minus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `
             })
             
-            document.getElementById("product_table").innerHTML = htmlString
+            document.getElementById("product_cards").innerHTML = htmlString
         }
 
         refreshProducts()
