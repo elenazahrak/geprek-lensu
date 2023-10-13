@@ -15,6 +15,8 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 
 @login_required(login_url='/login')
 # Create your views here.
@@ -144,3 +146,22 @@ def delete_product(request, id):
     product.delete()
     # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
+
+def get_product_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def create_ajax(request):
+    if request.method == 'POST':
+        menu = request.POST.get("menu")
+        price = request.POST.get("price")
+        stock = request.POST.get("stock")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Product(menu=menu, price=price, stock=stock, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+    return HttpResponseNotFound()

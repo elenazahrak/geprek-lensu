@@ -1,93 +1,335 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#" style="line-height: 2; color: #FFFFFF;">Geprek Lensu</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:create_product' %}" style="color: #FFFFFF;">Tambah Item</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:logout' %}" style="color: #FFFFFF;">Logout</a>
-                    </li>
-                </ul>
+    <body>
+        <div class="navbar">
+            <div class="left-section">
+                <a href="#" class="logo" style="color: #E03930;">Geprek Lensu</a>
+                <a href="{% url 'main:create_product' %}" class="add-item-button">Tambah Item</a>
+            </div>
+            <div class="right-section">
+                <a href="{% url 'main:logout' %}" class="logout-button" style="font-weight: 600;">Logout</a>
             </div>
         </div>
-    </nav>
+    </body>
 
     <div class="body">
-        <div class="text">
-            <h1>Halo, {{ name }} dari kelas {{ class }}! ^____^</h1>
-            {% with item_count=products|length %}
-                <h5>Kamu menyimpan {{ item_count }} item pada aplikasi ini</h5>
-            {% endwith %}
-            <p>Sesi Login Terakhir: {{ last_login }}</p>
+        <div class="hero-container">
+            <div class="hero">
+                <div class="hero-text" style="text-align: center;">
+                    <h1 style="font-weight: bold;">Nikmati Pedasnya Hidup di Geprek Lensu!</h1>
+                </div>
+            </div>            
+            <div class="title-card">
+                <div class="text-card">
+                    <div class="text">
+                           <h1 style="padding-bottom: 5px; color: #EAD9A3;">Hai, {{ name }}!</h1>
+                        {% with item_count=products|length %}
+                            <h5 class="icon-keranjang">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span style="margin-left: 10px;">{{ item_count }} item</span>
+                            </h5>
+                            <h5 class="icon-jam">
+                                <i class="far fa-clock fa-lg"></i>
+                                <span style="margin-left: 10px;">Last Login: {{ last_login }}</span>
+                            </h5>
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#addProductModal" style="width: 800; display: block; margin: 0 auto; background-color: #EAD9A3; color: #E03930; font-weight: 600;">Add Product by AJAX</button>
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="row">
+        
+        <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: #EAD9A3;">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="addProductModalLabel" style="color: #E03930; font-weight: 600;">Add New Product</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="menu" class="form-label" style="color: #866237; font-weight: 600;">Nama Menu:</label>
+                                <input type="text" name="menu" id="menu" class="form-control" placeholder="Masukkan Nama Menu" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label" style="color: #866237; font-weight: 600;">Harga:</label>
+                                <input type="number" name="price" id="price" class="form-control" placeholder="Masukkan Harga" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="stock" class="form-label" style="color: #866237; font-weight: 600;">Jumlah Stok:</label>
+                                <input type="number" name="stock" id="stock" class="form-control" placeholder="Masukkan Stock" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label" style="color: #866237; font-weight: 600;">Deskripsi:</label>
+                                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Masukkan Deskripsi" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal" style="background-color: #EAD9A3; color:#E03930; border-color: #E03930; font-weight: 600;">Close</button>
+                        <button type="button" class="btn" id="button_add" data-bs-dismiss="modal" style="background-color: #E03930; color:#EAD9A3; font-weight: 600;">Add Product</button>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+
+        <table id="product_table">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Description</th>
+            </tr>
+        </table>
+        
+        <div class="row" id="product_cards">
             {% for product in products %}
-                <div class="cardbox">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.menu }}</h5>
-                        <p class="card-text">Harga: {{ product.price }}</p>
-                        <p class="card-text">Jumlah Stok: <span id="stock{{ product.id }}">{{ product.stock }}</span></p>
-                        <p class="card-text">{{ product.description }}</p>
-                        <div class="text-center">
-                            <a href="{% url 'main:add_stock' product.id %}" class="btn btn-primary btn-sm">Tambah</a>
-                            <a href="{% url 'main:reduce_stock' product.id %}" class="btn btn-warning btn-sm">Kurang</a>
-                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-danger btn-sm">Hapus</a>
-                            <a href="{% url 'main:edit_product' product.id %}" class="btn btn-info btn-sm">Edit</a>
+            <div class="card-container">
+                <div class="card-body">
+                    <div class="card-element" style="color: #866237;">
+                        <h5 class="card-title" style="font-weight: 700; margin-bottom: 10px;">{{ product.menu }}</h5>
+                        <p class="card-text" style="font-weight: 600; margin-bottom: 10px;">
+                            <i class="fas fa-info-circle"></i> <span class="icon-text"></span> {{ product.description }}
+                        </p>
+                        <div class="info-group">
+                            <div class="info" style="margin-bottom: 10px;">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span class="icon-text"></span> {{ product.price }}
+                            </div>
+                            <div class="info" style="margin-bottom: 10px;">
+                                <i class="fas fa-cubes"></i>
+                                <span class="icon-text"></span> <span id="stock{{ product.id }}">{{ product.stock }}</span>
+                            </div>
+                        </div>                        
+                        <div class="edit-delete">
+                            <a href="{% url 'main:edit_product' product.id %}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-sm" style="background-color: #EAD9A3; color: #F8362D; border-radius: 10px; border: none; margin-top: 10px;">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                            <a href="{% url 'main:add_stock' product.id %}" class="btn btn-sm btn-long" style="background-color: #F8362D; color: #EAD9A3; border-radius: 10px; border: none; margin-top: 10px;">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                            <a href="{% url 'main:reduce_stock' product.id %}" class="btn btn-sm btn-long" style="background-color: #F8362D; color: #EAD9A3; border-radius: 10px; border: none; margin-top: 10px;">
+                                <i class="fas fa-minus"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
+        
 
         <br />
 
     </div>
+
+    <script>
+         async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+
+        async function refreshProducts() {
+            document.getElementById("product_table").innerHTML = ""
+            const products = await getProducts()
+            let htmlString = `<tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Description</th>
+            </tr>`
+            products.forEach((item) => {
+                htmlString += `\n<tr>
+                <td>${item.fields.menu}</td>
+                <td>${item.fields.price}</td>
+                <td>${item.fields.stock}</td>
+                <td>${item.fields.description}</td>
+            </tr>` 
+            })
+            
+            document.getElementById("product_table").innerHTML = htmlString
+        }
+
+        refreshProducts()
+
+        function addProduct() {
+            fetch("{% url 'main:create_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            })
+            .then(function (response) {
+                if (response.status === 200) {
+                    var myModal = new bootstrap.Modal(document.getElementById("addProductModal"));
+                    myModal.hide();
+
+                    document.getElementById("form").reset();
+                }
+            })
+            .then(refreshProducts);
+
+            return false;
+        }
+
+    document.getElementById("button_add").onclick = addProduct;
+
+    </script>
+
     <style>
+        
         .navbar {
-            background-color: #382B3D;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #EAD9A3;
+            color: #E03930;
+            padding-left: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
             font-weight: bold;
+            text-decoration: none
+        }
+
+        .add-item-button {
+            color: #E03930;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #EAD9A3;
+            text-decoration: none
+        }
+
+        .logout-button {
+            background-color: #E03930;
+            color: #EAD9A3;
+            border: #E03930;
+            margin: 30px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            text-decoration: none
         }
 
         .body {
             max-width: 1440px;
+            padding-top: 20px;
             padding-right: 20px;
             padding-left: 20px;
-            background-image: url('https://wallpapercave.com/wp/wp8855577.jpg');
+            background-color: #EAD9A3;
+        }
+
+        .hero {
+            background-color: #EAD9A3;
+            font-family: 'ui-sans-serif', sans-serif;
+            font-weight: bold;
+            border-radius: 30px;
+        }
+
+        .hero-card {
+            margin: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .hero-text {
+            color: #E03930;
+            margin: 20px;      
+            font-family: 'Inter', sans-serif;
+        }
+
+        .title-card {
+            background-color: #E03930;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            margin-left: 50px;
+            margin-right: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+
+        .text-card {
+            margin: 20px;
         }
 
         .text {
             color: #ffffff;
-            padding-top: 40px;
             padding-left: 50px;
+            margin: 20px;
             font-family: 'Inter', sans-serif;
         }
+
+        .icon-keranjang, .icon-jam {
+            display: flex;
+            align-items: center;
+            margin-left: 5px;
+        }
+        
         .row {
-            padding: 40px;
-            padding-left: 40px;
-            padding-right: 40px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 30px;
         }
-        .cardbox {
-            width: 380px;
-            height: 200px;
+
+        .card-container {
+            padding: -20px;
+            flex-basis: calc(33.33% - 10px);
+            margin-bottom: 10px;
         }
+
         .card-body {
-            background-color: white;
+            background-color: #cbb178;
+            border: 3px solid #A68050;
+            color: #E03930;
             padding: 20px;
-            margin-bottom: 20px;
+            margin: 20px;
             border-radius: 10px;
             font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-element {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .card-text {
+            margin: 10px;
+            color: #E03930;
+        }
+
+        .icon-text {
+            margin-left: 10px;
+        }
+
+        .info-group {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-long {
+            width: 80px;
+        }
+
+
+        .info {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .icon-text {
+            margin-right: 10px;
         }
 
         .cookie {

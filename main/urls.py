@@ -13,6 +13,8 @@ from main.views import add_stock
 from main.views import delete_product
 from main.views import edit_product
 from main.views import delete_product
+from main.views import get_product_json
+from main.views import create_ajax
 
 app_name = 'main'
 
@@ -27,8 +29,10 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path('add_stock/<int:id>/', add_stock, name='add_stock'),
-    path('reduce_stock/<int:id>/', reduce_stock, name='reduce_stock'),
-    path('delete_product/<int:id>/', delete_product, name='delete_product'),
+    path('reduce-stock/<int:id>/', reduce_stock, name='reduce_stock'),
+    path('delete-product/<int:id>/', delete_product, name='delete_product'),
     path('edit-product/<int:id>', edit_product, name='edit_product'),
-    path('delete/<int:id>', delete_product, name='delete_product'),
+    # path('delete/<int:id>', delete_product, name='delete_product'),
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-ajax/', create_ajax, name='create_ajax'),
 ]

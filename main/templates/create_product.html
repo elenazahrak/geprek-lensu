@@ -1,28 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    body {
+        background-color: #E03930;
+    }
+</style>
 <div class="container">
-    <h1 class="mt-5 mb-4">Tambahkan Menu Untuk Restoran Geprek Lensu</h1>
+    <h1 class="mt-5 mb-4" style="color: white;">Tambahkan Menu Untuk Restoran Geprek Lensu</h1>
     <form method="POST">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="menu" class="form-label">Nama Menu:</label>
+            <label for="menu" class="form-label" style="color: white;">Nama Menu:</label>
             <input type="text" name="menu" id="menu" class="form-control" placeholder="Masukkan Nama Menu" required>
         </div>
         <div class="mb-3">
-            <label for="price" class="form-label">Harga:</label>
+            <label for="price" class="form-label" style="color: white;">Harga:</label>
             <input type="number" name="price" id="price" class="form-control" placeholder="Masukkan Harga" required>
         </div>
         <div class="mb-3">
-            <label for="stock" class="form-label">Jumlah Stok:</label>
+            <label for="stock" class="form-label" style="color: white;">Jumlah Stok:</label>
             <input type="number" name="stock" id="stock" class="form-control" placeholder="Masukkan Stock" required>
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label">Deskripsi:</label>
+            <label for="description" class="form-label" style="color: white;">Deskripsi:</label>
             <textarea name="description" id="description" class="form-control" rows="4" placeholder="Masukkan Deskripsi" required></textarea>
         </div>
         <div class="d-grid">
-            <button class="btn btn-primary" type="submit">Update Product</button>
+            <button class="btn" type="submit" style="background-color: #EAD9A3; color:#E03930; font-weight: 600;">Update Product</button>
         </div>
     </form>
 </div>
