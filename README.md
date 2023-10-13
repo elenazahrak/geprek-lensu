@@ -433,3 +433,52 @@ git push -u origin <branch_utama>
 ```
 
 </details>
+
+<details>
+<summary>Tugas 6</summary>
+<br>
+ 
+**1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.**
+ 
+Asynchronous programming dan synchronous programming merupakan dua paradigma atau teknik pemrograman yang berbeda dalam cara mereka mengelola dan mengeksekusi tugas atau operasi yang memerlukan waktu. Synchronous programming mengeksekusi tugas atau operasi secara berurutan, satu persatu. Tugas yang sudah dimulai akan ditunggu hingga tugas tersebut selesai sebelum lanjut ke tugas berikutnya. Walaupun lebih mudah untuk diterapkan, tetapi pendekatan ini memerlukan waktu yang lama dan mampu mengakibatkan aplikasi menjadi melambat hingga tidak responsif. Berbeda dengan synchronous, asynchronous programming menjalankan tugas atau operasi secara bersamaan tanpa menunggu operasi sebelumnya selesai. Pendekatan ini menggunakan konsep seperti callback, promise, async/wait, dan konsep-konsep lainnya untuk mengelola alur eksekusi. Asynchronous programming biasanya digunakan dalam hal-hal yang memerlukan jenis pendekatan yang tetap responsif saat mengeksekusi tugas yang memerlukan waktu lama, misalnya operasi I/O atau komputasi intensif.
+
+**2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.**
+
+Paradigma event-driven programming merupakan sebuah pendekatan di mana program merespons peristiwa atau kejadian yang terjadi, misalnya tindakan pengguna, dengan menjalankan tindakan tertentu. Pada JavaScript dan AJAX, paradigma ini sangat relevan karena banyak terdapat interaksi pengguna dan perubahan dinamis yang terjadi pada halaman web.
+
+**3. Jelaskan penerapan asynchronous programming pada AJAX.**
+
+Asynchronous programming pada AJAX memungkinkan aplikasi web untuk responsif dan menghindari blocking sehingga pengguna bisa terus berinteraksi dengan halaman web tanpa harus menunggu permintaan ke server selesai. Hal ini mampu meningkatkan responsivitas dan pengalaman pengguna saat menggunakan aplikasi web. Beberapa aspek penerapan asynchronous programming dalam AJAX di antaranya callback functions, promises, dan event listeners. Callback functions didefinisikan untuk menangani respons dari server setelah permintaan selesai. Konsep ini dapat mengirimkan permintaan HTTP asinkron ke server menggunakan objek XMLHttpRequest atau fetch API. Dengan begitu, kita dapat menjalankan kode tertentu hanya ketika data telah diterima dan eksekusi kode lainnya tidak berhenti. Selanjutnya adalah promises yang dapat digunakan untuk menulis kode asynchronous sehingga lebih mudah untuk dipahami. Konsep ini dapat digunakan untuk mengatasi AJAX request dengan cara yang lebih elegan. Konsep selanjutnya ialah event listeners yang dapat menangani AJAX events, misalnya ‘load’, ‘eror’, dan ‘abort’. Dengan ini, kita dapat merespons berbagai kejadian yang terkait dengan permintaan asinkron. 
+
+**4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.**
+
+Dari segi ukuran, Fetch API lebih ringan dan menghemat ruang serta waktu dalam proses pengunduhannya karena aplikasi kita tidak memuat library tambahan, sedangkan jQuery yang merupakan library yang lebih besar sehingga cenderung memiliki ukuran yang lebih besar. Akan tetapi, jQuery ini membantu kita dalam menghindari penulisan kode JavaScript yang berlebihan sehingga dari segi fungsionalitas menjadi lebih lengkap. Selain itu, fetch API memiliki sintaks yang lebih sederhana sehingga lebih mudah dipahami untuk pengembang yang terbiasa dengan JavaScript, walaupun pemula mungkin akan sedikit kebingungan dalam menangani konsep Promise. JQuery juga memiliki sintaks yang sederhana karena banyak fungsi yang sudah tersedia sehingga mempermudah pengembang dalam melakukan pekerjaannya. Selanjutnya, fetch API belum didukung oleh beberapa versi lama dari Internet Explorer. Akan tetapi, tidak perlu khawatir juga karena masalah ini dapat diselesaikan dengan transpiler. Lain halnya dengan jQuery yang telah dirancang untuk kompatibilitas lintas browser, termasuk browser lama. Dari berbagai pertimbangan di atas, sebenarnya kita dapat memilih sesuai dengan kebutuhan aplikasi masing-masing. Fetch API akan menjadi solusi yang tepat jika kita membutuhkan kinerja yang maksimal, ukurang yang lebih kecil, dan teknologi yang lebih modern. Akan tetapi, jQuery menjadi pilihan yang tepat jika kita membutuhkan dukungan kompatibilitas lintas browser yang kuat.
+
+**5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+- [x] Ubahlah kode cards data item agar dapat mendukung AJAX GET.
+
+- [x] Lakukan pengambilan task menggunakan AJAX GET.
+
+- [x] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item.
+
+Pada bagian ini, saya membuat tombol yang dapat membuka sebuah modal yang berisi form  sehingga pengguna dapat menambahkan item. Untuk mengimplementasikannya, saya membuat kerangka modal yang memuat elemen-elemen yang diperlukan misalnya judul modal, input form, dan tombol untuk menutup modal dan menambahkan produk. Setelah itu, saya membuat tombol pada halaman utama yang akan memicu modal. Kemudian, saya membuat fungsi `addProduct()` untuk menambahkan data produk ke basis data yang menggunakan AJAX untuk mengirim data formulir ke server dengan metode POST serta mengosongkan formulir setelah berhasil menambahkan data. Fungsi ini juga mengeksekusi fungsi `refreshProducts()`. Terakhir, saya menambahkan event handler untuk tombol “Add Product” pada modal sehingga dapat menjalankan fungsi `addProduct()` saat tombol ini ditekan.
+
+- [x] Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data.
+
+Pada bagian ini, saya membuat sebuah fungsi di views yang bertugas untuk menambahkan produk baru ke dalam basis data menggunakan teknik AJAX. Pertama, saya membuat fungsi baru di `views.py` dengan nama `add_product_ajax` yang menerima parameter `request`. Untuk mengintegrasikan AJAX dengan Django, saya mengimpor modul `csrf_exempt` dari `django.views.decorators.csrf` ke dalam berkas `views.py`. Kemudian, kita perlu menambahkan dekorator `@csrf_exempt` di atas fungsi `add_product_ajax` yang telah dibuat sebelumnya. Selanjutnya, dalam fungsi `add_product_ajax`, saya memiliki kode yang mengambil data dari permintaan POST. Misalnya, saya mengambil nilai `menu`, `price`, `stock`, `description`, dan `user` dari permintaan tersebut. Selanjutnya, saya mengidentifikasi pengguna yang sedang masuk (user) dengan `request.user.`.
+
+Setelah itu, saya membuat objek baru yang sesuai dengan model `Product` dengan data yang telah diambil dari permintaan. Objek "new_product" ini kemudian disimpan ke dalam basis data menggunakan metode "save()". Terakhir, saya memberikan respons HTTP dengan status 201 (CREATED) untuk menandakan bahwa produk baru telah berhasil ditambahkan ke basis data. Jika ada kesalahan dalam permintaan atau produk tidak dapat ditambahkan, saya memberikan respons "HttpResponseNotFound()" untuk menandakan bahwa halaman yang diminta tidak ditemukan.
+
+- [x] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+
+Pada bagian ini, saya menambahkan pengaturan rute untuk fungsi `create_ajax`. Pertama, saya membuka berkas `urls.py` pada direktori `main` dan melakukan impor fungsi `create_ajax`. Setelah itu, saya menambahkan rute URL dengan kode `path('create-ajax/', create_ajax, name='create_ajax'),` ke dalam pengaturan `urlpatterns`. Dengan begitu, URL ini akan mengarahkan permintaan pengguna ke fungsi yang sesuai untuk menambahkan produk baru menggunakan AJAX yaitu `create_ajax`.
+
+- [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+	
+- [x] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan.
+
+- [x] Melakukan perintah collectstatic.
+
+Pada bagian ini, saya melakukan pengaturan untuk static files yang terdapat pada file `settings.py`. Static files ini mencakup berbagai jenis file seperti CSS, JavaScript, dan gambar. Terdapat dua kode yang saya tambahkan yaitu `STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')` yang akan menentukan absolute path ke direktori tempat static files akan disimpan ketika perintah `collectstatic` dijalankan dalam proyek. Dengan begitu, kita dapat mengumpulkan semua static files dari berbagai aplikasi dalam proyek ke satu direktori. Baris kode kedua yang saya tambahkan adalah `STATIC_URL = 'static'` yang merupakan URL yang dapat diakses secara publik untuk mengambil static files. Ini merupakan alamat yang digunakan untuk mengakses static files dari luar situs web. Sedangkan perintah `collectstatic` itu sendiri bertugas untuk mengumpulkan semua static files dari berbagai aplikasi dalam proyek Django sehingga mempermudah akses dan penggunaan static files tersebut dalam situs web.
+
+</details>
