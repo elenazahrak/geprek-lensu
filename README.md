@@ -483,4 +483,18 @@ Pada bagian `<button type="button" class="btn" id="button_add" data-bs-dismiss="
 
 Pada bagian ini, saya melakukan pengaturan untuk static files yang terdapat pada file `settings.py`. Static files ini mencakup berbagai jenis file seperti CSS, JavaScript, dan gambar. Terdapat dua kode yang saya tambahkan yaitu `STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')` yang akan menentukan absolute path ke direktori tempat static files akan disimpan ketika perintah `collectstatic` dijalankan dalam proyek. Dengan begitu, kita dapat mengumpulkan semua static files dari berbagai aplikasi dalam proyek ke satu direktori. Baris kode kedua yang saya tambahkan adalah `STATIC_URL = 'static'` yang merupakan URL yang dapat diakses secara publik untuk mengambil static files. Ini merupakan alamat yang digunakan untuk mengakses static files dari luar situs web. Sedangkan perintah `collectstatic` itu sendiri bertugas untuk mengumpulkan semua static files dari berbagai aplikasi dalam proyek Django sehingga mempermudah akses dan penggunaan static files tersebut dalam situs web.
 
+- [x] Melakukan add-commit-push ke GitHub.
+
+Saya melakukan add, commit, dan push ke GitHub dengan perintah:
+
+```
+git add .
+git commit -m "<pesan_commit>"
+git push -u origin <branch_utama>
+```
+
+- [x] Melakukan deployment ke PaaS PBP Fasilkom UI dan sertakan tautan aplikasi pada file README.md.
+
+Terakhir, saya melakukan deployment terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses secara luas oleh teman-temanmu melalui Internet.
+
 </details>
