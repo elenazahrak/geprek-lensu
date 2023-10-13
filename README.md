@@ -4,6 +4,8 @@ NPM     : 2206824060
 
 Kelas   : PBP F
 
+[Tautan Web Geprek Lensu](http://elena-zahra-tugas.pbp.cs.ui.ac.id)
+
 <details>
 <summary>Tugas 2</summary>
 <br>
