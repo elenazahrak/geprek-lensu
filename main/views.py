@@ -180,6 +180,7 @@ def create_product_flutter(request):
             user = request.user,
             menu = data["menu"],
             stock = int(data["stock"]),
+            price = int(data["price"]),
             description = data["description"]
         )
 
