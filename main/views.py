@@ -17,6 +17,7 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound, HttpResponseRedirect
+import json
 
 @login_required(login_url='/login')
 # Create your views here.
@@ -173,12 +174,12 @@ def create_ajax(request):
 def create_product_flutter(request):
     if request.method == 'POST':
         
-        data = JsonResponse.loads(request.body)
+        data = json.loads(request.body)
 
         new_product = Product.objects.create(
             user = request.user,
-            name = data["name"],
-            price = int(data["price"]),
+            menu = data["menu"],
+            stock = int(data["stock"]),
             description = data["description"]
         )
 
