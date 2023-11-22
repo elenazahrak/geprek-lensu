@@ -1,8 +1,8 @@
-Nama    : Elena Zahra Kurniawan
+Nama   : Elena Zahra Kurniawan
 
-NPM     : 2206824060
+NPM    : 2206824060
 
-Kelas   : PBP F
+Kelas  : PBP F
 
 [Link Web Geprek Lensu](http://elena-zahra-tugas.pbp.cs.ui.ac.id)
 
